@@ -3,16 +3,28 @@ let computerScore = 0;
 let rockButton = document.getElementById("rock");
 let paperButton = document.getElementById("paper");
 let scissorsButton = document.getElementById("scissors");
-
+let replayButton = document.createElement("button");
+let scoreDiv = document.getElementById("scores");
+let textDiv = document.getElementById("text");
+let humanScoreDiv = document.getElementById("humanscore");
+let computerScoreDiv = document.getElementById("computerscore");
+replayButton.textContent = "Replay!";
+replayButton.addEventListener("click", () => {
+    humanScore = 0;
+    computerScore = 0;
+    humanScoreDiv.textContent="Your Score: 0";
+    computerScoreDiv.textContent="Computer Score: 0";
+    replayButton.remove();
+    textDiv.textContent="First to 5 wins!"
+});
     rockButton.addEventListener("click", () => playRound("rock"))
     paperButton.addEventListener("click", () => playRound("paper"))
     scissorsButton.addEventListener("click", () => playRound("scissors"))   
 
-let textDiv = document.getElementById("text");
-let humanScoreDiv = document.getElementById("humanscore");
-let computerScoreDiv = document.getElementById("computerscore");
+
 function playRound(button) {
     if(humanScore>=5 || computerScore>=5) {
+        
         return;
     }
     const computerSelection = getComputerChoice();
@@ -59,6 +71,11 @@ function playRound(button) {
     }
     if(computerScore == 5) {
         textDiv.textContent = "You lose the game! Better luck next time!";
+    }
+    if(humanScore>=5 || computerScore>=5) {
+        
+        scoreDiv.appendChild(replayButton);
+        
     }
 }
     
