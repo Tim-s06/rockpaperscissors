@@ -1,0 +1,11 @@
+.scores {
+    display:flex;
+    justify-content: space-between;
+}
+.text{
+    height:30px;
+}
+.buttons {
+    display:flex;
+    justify-content: space-evenly;
+}

@@ -1,16 +1,19 @@
-
-function playGame() {
-    let humanScore = 0;
+let humanScore = 0;
 let computerScore = 0;
-function playRound() {
+let rockButton = document.getElementById("rock");
+let paperButton = document.getElementById("paper");
+let scissorsButton = document.getElementById("scissors");
+rockButton.addEventListener("click", () => playRound("rock"))
+paperButton.addEventListener("click", () => playRound("paper"))
+scissorsButton.addEventListener("click", () => playRound("scissors"))
+let textDiv = document.querySelector("body");
+function playRound(button) {
+    
     const computerSelection = getComputerChoice();
-    const humanSelection = getHumanChoice().toLowerCase();
-    if(humanSelection != "rock" && humanSelection !="paper" && humanSelection!="scissors") {
-        console.log("You lose! Wrong input!")
-        computerScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
-    } else if(humanSelection == computerSelection.toLowerCase()) {
-        console.log("Draw! " + computerSelection +  " is the same as " + computerSelection + "!");
+    const humanSelection = button.toLowerCase();
+    
+    if(humanSelection == computerSelection.toLowerCase()) {
+        textDiv.textContent = "Draw! " + computerSelection +  " is the same as " + computerSelection + "!";
         console.log("You: " + humanScore + " | Computer: " + computerScore);
     }else if(humanSelection == "rock" && computerSelection =="Paper") {
         console.log("You lose! Paper coats Rock!");
@@ -39,19 +42,8 @@ function playRound() {
         console.log("You: " + humanScore + " | Computer: " + computerScore);
     }
 }
-    let counter = 0;
-    while(counter <5) {
-        playRound();
-        counter++;
-}
-if(humanScore==computerScore) {
-    console.log("Not quite enough! It ended in a draw!")
-} else if(humanScore>computerScore) {
-    console.log("Well done! You beat the computer!")
-} else if(computerScore>humanScore) {
-    console.log("You lost! Better luck next time!")
-}
-}
+    
+
 function getComputerChoice() {
     let number = Math.floor(Math.random()*100);
     let choice = "";
@@ -90,4 +82,4 @@ console.log("Rock: " + rock);
 console.log("Paper: " + paper);
 console.log("Scissors: " + scissors);
 }
-playGame();
+
