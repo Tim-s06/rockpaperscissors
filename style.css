@@ -2,8 +2,9 @@
     display:flex;
     justify-content: space-between;
 }
-.text{
-    height:30px;
+#text{
+    margin:10px;
+    text-align: center;
 }
 .buttons {
     display:flex;

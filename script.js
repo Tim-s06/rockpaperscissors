@@ -3,43 +3,62 @@ let computerScore = 0;
 let rockButton = document.getElementById("rock");
 let paperButton = document.getElementById("paper");
 let scissorsButton = document.getElementById("scissors");
-rockButton.addEventListener("click", () => playRound("rock"))
-paperButton.addEventListener("click", () => playRound("paper"))
-scissorsButton.addEventListener("click", () => playRound("scissors"))
-let textDiv = document.querySelector("body");
+
+    rockButton.addEventListener("click", () => playRound("rock"))
+    paperButton.addEventListener("click", () => playRound("paper"))
+    scissorsButton.addEventListener("click", () => playRound("scissors"))   
+
+let textDiv = document.getElementById("text");
+let humanScoreDiv = document.getElementById("humanscore");
+let computerScoreDiv = document.getElementById("computerscore");
 function playRound(button) {
-    
+    if(humanScore>=5 || computerScore>=5) {
+        return;
+    }
     const computerSelection = getComputerChoice();
     const humanSelection = button.toLowerCase();
     
     if(humanSelection == computerSelection.toLowerCase()) {
         textDiv.textContent = "Draw! " + computerSelection +  " is the same as " + computerSelection + "!";
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
-    }else if(humanSelection == "rock" && computerSelection =="Paper") {
-        console.log("You lose! Paper coats Rock!");
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
+    } else if(humanSelection == "rock" && computerSelection =="Paper") {
+        textDiv.textContent = "You lose! Paper coats Rock!";
         computerScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
     } else if(humanSelection == "rock" && computerSelection =="Scissors") {
-        console.log("You win! Rock beats Scissors!");
+        textDiv.textContent = "You win! Rock beats Scissors!";
         humanScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
     } else if(humanSelection == "paper" && computerSelection=="Rock") {
-        console.log("You win! Paper coats Rock!");
+        textDiv.textContent = "You win! Paper coats Rock!";
         humanScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
     }else if(humanSelection == "paper" && computerSelection=="Scissors") {
-        console.log("You lose! Scissors cut Paper!");
+        textDiv.textContent = "You lose! Scissors cut Paper!";
         computerScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
     }else if(humanSelection == "scissors" && computerSelection=="Rock") {
-        console.log("You lose! Rock beats Scissors!");
+        textDiv.textContent = "You lose! Rock beats Scissors!";
         computerScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
     }
     else if(humanSelection == "scissors" && computerSelection=="Paper") {
-        console.log("You win! Scissors cut Paper!");
+        textDiv.textContent = "You win! Scissors cut Paper!";
         humanScore++;
-        console.log("You: " + humanScore + " | Computer: " + computerScore);
+        humanScoreDiv.textContent = "Your Score: " + humanScore;
+        computerScoreDiv.textContent = "Computer Score " + computerScore;
+    }
+    if(humanScore == 5) {
+        textDiv.textContent = "You win the game! Well done!";
+    }
+    if(computerScore == 5) {
+        textDiv.textContent = "You lose the game! Better luck next time!";
     }
 }
     
